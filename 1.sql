@@ -9,12 +9,12 @@
 -- Одна и та же экскурсия может быть связана с несколькими городами.
 
 create table city (
-id integer serial primary key,
+id serial primary key,
 name varchar(100) not null unique
 );
 
 create table route (
-id integer serial primary key,
+id serial primary key,
 name varchar(200) not null unique,
 departure_city_id integer not null
 references city(id) on update cascade on delete restrict,
@@ -34,7 +34,7 @@ primary key (route_id, city_id)
 );
 
 create table excursion (
-id integer serial primary key,
+id serial primary key,
 name varchar(200) not null,
 description text not null default '',
 price numeric(12,2) not null default 0
@@ -50,7 +50,7 @@ primary key (excursion_id, city_id)
 );
 
 create table tour (
-id integer serial primary key,
+id serial primary key,
 route_id integer not null
 references route(id) on update cascade on delete restrict,
 departure_date date not null,
